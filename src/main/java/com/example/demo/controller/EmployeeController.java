@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -38,8 +39,8 @@ public class EmployeeController {
 	
 	// get employee by id rest api
 		@GetMapping("/employees/{id}")
-		public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
-			Employee employee = employeeRepository.findById(id).orElseThrow();
+		public ResponseEntity<Optional<Employee>> getEmployeeById(@PathVariable Long id) {
+			Optional<Employee> employee = employeeRepository.findById(id);
 			return ResponseEntity.ok(employee);
 		}
 		@PutMapping("/employees/{id}")
